@@ -1,10 +1,5 @@
-# PacMan40th
-40th anniversary pacman in unity 2019
 
-
-# PacMan 40th anniversary
-
-## TODO
+# TODO
 
 - trello ?
  
@@ -20,7 +15,7 @@
 
 - implement. dei tunnel
 
-## CODE
+# CODE
 
 - building the maze:
 	FromDimensions(int sizeRows, int sizeCols)of MazeDataGenerator.cs
@@ -30,10 +25,10 @@
      RenderFromData(int[,] data) of MazeRenderer.cs
 
 
-## PATHs & URLS
+# PATHs & URLS
 
-* [PacMan 40th anniversary git](git@github.com:masayume/PacMan40th.git)
-* [PacMan 40th anniversary URL](https://github.com/masayume/PacMan40th)
+* []()
+* []()
 * []()
 * []()
 * []()
