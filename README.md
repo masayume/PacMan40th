@@ -5,11 +5,14 @@
 
 # PacMan 40th anniversary
 
+## INFO
+
+- local directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/
+
 ## TODO
 
 - trello ?
  
-- gestione della simmetria centrale
 - seed for random
 - pacman sprite
 - test collider con player
@@ -40,3 +43,5 @@
 * []()
 
 
+## DONE
+- gestione della simmetria centrale
