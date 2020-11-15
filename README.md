@@ -1,7 +1,7 @@
 # PacMan40th
 40th anniversary pacman in unity 2019
 
-![40th anniversary pacman in unity 2019](img/Screenshot_20201114.png)
+![40th anniversary pacman in unity 2019](img/Screenshot_20201115.png)
 
 # PacMan 40th anniversary
 
@@ -32,7 +32,7 @@
 ```
 - rendering the maze:
 ```
-     RenderFromData(int[,] data) of MazeRenderer.cs
+    RenderFromData(int[,] data) of MazeRenderer.cs
 ```
 
 ## PATHs & URLS

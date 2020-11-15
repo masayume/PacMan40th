@@ -11,8 +11,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d9fb960150c2c82598119b2653a50b15,
+      objectReference: {fileID: 0}
+    - target: {fileID: 4128954142928860252, guid: ad2591003b2dadc789a94c5b294b8d4a,
         type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4128954142928860252, guid: ad2591003b2dadc789a94c5b294b8d4a,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4714907655581358599, guid: ad2591003b2dadc789a94c5b294b8d4a,
         type: 3}
       propertyPath: m_LocalPosition.x

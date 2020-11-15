@@ -20,7 +20,7 @@ public class MazeRenderer : MonoBehaviour
         {
             for (int j = 0; j <= cMax; j++) // columns
             {
-                if (data[i, j] != 1)
+                if (data[i, j] == 0)
                 {
                     // creiamo un nuovo spriterenderer da posizionare nello spazio
                     SpriteRenderer sp = Instantiate<SpriteRenderer>(floor);
