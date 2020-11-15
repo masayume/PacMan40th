@@ -34,10 +34,7 @@ public class MazeDataGenerator
             for (int j = 0; j <= cMax; j++) // cols
             {
                 // outside wall
-                if (i == 0 || j == 0 || i == rMax || j == cMax)
-                {
-                    maze[i, j] = 1;
-                }
+                if (i == 0 || j == 0 || i == rMax || j == cMax) { maze[i, j] = 1; }
 
                 // every other inside space
                 else if (i % 2 == 0 && j % 2 == 0)

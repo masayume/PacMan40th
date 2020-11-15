@@ -199,6 +199,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 4128954142928860252, guid: ad2591003b2dadc789a94c5b294b8d4a, type: 3}
+  walls:
+  - {fileID: 4128954142928860252, guid: daf1a6a63225bc0ce82a9b165c5e2644, type: 3}
+  - {fileID: 4128954142928860252, guid: 31256784feada26199e80fecaaeda048, type: 3}
+  - {fileID: 4128954142928860252, guid: 706e951fc194e0666806db6f3bc7b76f, type: 3}
+  - {fileID: 4128954142928860252, guid: 488189be582aff4abb174842e0cdcf6d, type: 3}
+  - {fileID: 4128954142928860252, guid: 696937ec4d95fc47298d6e1204e4e3de, type: 3}
+  - {fileID: 4128954142928860252, guid: 2db42deee1ed53594a1802e902949026, type: 3}
+  - {fileID: 4128954142928860252, guid: db0fca4171e697fa2a0db1a6c2f3086c, type: 3}
+  - {fileID: 4128954142928860252, guid: a40a485513d17efd19993eaddd43ee86, type: 3}
+  - {fileID: 4128954142928860252, guid: fda03bf7cdd014f9abc4c887c59b164c, type: 3}
+  - {fileID: 4128954142928860252, guid: 419ad66416dd8556fba6743964bdd8ea, type: 3}
+  - {fileID: 4128954142928860252, guid: 84644ecca61fa1283af70ef1905f3202, type: 3}
+  - {fileID: 4128954142928860252, guid: 1b25488494177dec8aa429a656295c3d, type: 3}
+  - {fileID: 4128954142928860252, guid: d4e8f2707a644203e9276560d05ada48, type: 3}
+  - {fileID: 4128954142928860252, guid: 35316f5275538e3d48c6248b902e8854, type: 3}
+  - {fileID: 4128954142928860252, guid: 78fbb786f8ce2ddfb8e98d6b1644dca1, type: 3}
   floor: {fileID: 2231706593773874287, guid: 39b2a4d0384878c89a29453dde5a2bee, type: 3}
 --- !u!1 &990846673
 GameObject:
