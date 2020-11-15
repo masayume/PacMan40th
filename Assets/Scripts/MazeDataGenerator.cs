@@ -25,9 +25,13 @@ public class MazeDataGenerator
         int rMax = maze.GetUpperBound(0);
         int cMax = maze.GetUpperBound(1);
 
-        for (int i = 0; i <= rMax; i++)
+        // Debug.Log("rMax, cMax: " + rMax + ", " + cMax);
+
+        int c05 = (int)(cMax/2);
+
+        for (int i = 0; i <= rMax; i++) // rows
         {
-            for (int j = 0; j <= cMax; j++)
+            for (int j = 0; j <= cMax; j++) // cols
             {
                 // outside wall
                 if (i == 0 || j == 0 || i == rMax || j == cMax)
@@ -51,6 +55,16 @@ public class MazeDataGenerator
             }
         }
 
+        // re-edit right half of the maze to be symmetric
+        for (int i = 1; i < rMax; i++) // rows
+        {
+            for (int j = c05+1; j < cMax; j++) // cols
+            {
+
+                Debug.Log(" i,j: " + i + "," + j + " = " + i + "," + (j-(c05-j)));
+                maze[i, j] = maze[i, cMax-j];
+            }
+        }
         return maze;
     }
 }

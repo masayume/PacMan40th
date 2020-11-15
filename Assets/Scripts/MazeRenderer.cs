@@ -23,14 +23,14 @@ public class MazeRenderer : MonoBehaviour
                 {
                     // creiamo un nuovo spriterenderer da posizionare nello spazio
                     SpriteRenderer sp = Instantiate<SpriteRenderer>(floor);
-                    int x = i * step;    
-                    int y = j * step;   
+                    int x = j * step;    
+                    int y = i * step;   
                     sp.transform.position = new Vector3(x, y, 0);
 
                 } else {
                     SpriteRenderer sp = Instantiate<SpriteRenderer>(wall);
-                    int x = i * step;    
-                    int y = j * step;   
+                    int x = j * step;    
+                    int y = i * step;   
                     sp.transform.position = new Vector3(x, y, 0);
                 }
             }

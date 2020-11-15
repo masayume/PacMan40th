@@ -9,21 +9,19 @@
 
 - trello ?
  
-- upload su git e share a luca
-
-- posizionamento wall/floor (pivot centrale)
-
+- gestione della simmetria centrale
+- seed for random
+- pacman sprite
 - test collider con player
-
 - fix del layout del labirinto alla pacman
-
 - fix della topologia del labirinto (no vicoli ciechi e simmetria sull'asse verticale/orizz)
-
 - implement. dei tunnel
+- ghosts
 
 ## CODE
 
 - building the maze:
+	StartNewMaze() of GameController.cs
 	FromDimensions(int sizeRows, int sizeCols)of MazeDataGenerator.cs
 	DisplayMaze() of MazeConstructor.cs
 

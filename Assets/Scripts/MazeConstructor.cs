@@ -68,7 +68,7 @@ public class MazeConstructor : MonoBehaviour
         };
     }
 
-    public void GenerateNewMaze(int sizeRows, int sizeCols,
+    public void GenerateNewMaze(int sizeCols, int sizeRows,
         TriggerEventHandler startCallback=null, TriggerEventHandler goalCallback=null)
     {
         if (sizeRows % 2 == 0 && sizeCols % 2 == 0)
