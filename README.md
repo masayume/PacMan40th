@@ -8,6 +8,7 @@
 ## INFO
 
 - local directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/
+- PSD directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/img
 
 ## TODO
 
@@ -24,13 +25,15 @@
 ## CODE
 
 - building the maze:
+```
 	StartNewMaze() of GameController.cs
 	FromDimensions(int sizeRows, int sizeCols)of MazeDataGenerator.cs
 	DisplayMaze() of MazeConstructor.cs
-
+```
 - rendering the maze:
+```
      RenderFromData(int[,] data) of MazeRenderer.cs
-
+```
 
 ## PATHs & URLS
 
