@@ -12,12 +12,10 @@
 
 ## TODO
 
-- trello ?
- 
+- trello ? 
 - seed for random
 - pacman sprite
 - test collider con player
-- fix del layout del labirinto alla pacman
 - fix della topologia del labirinto (no vicoli ciechi e simmetria sull'asse verticale/orizz)
 - implement. dei tunnel
 - ghosts
@@ -48,3 +46,4 @@
 
 ## DONE
 - gestione della simmetria centrale
+- fix del layout del labirinto alla pacman
