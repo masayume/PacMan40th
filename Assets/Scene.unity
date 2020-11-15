@@ -217,6 +217,7 @@ MonoBehaviour:
   - {fileID: 4128954142928860252, guid: 78fbb786f8ce2ddfb8e98d6b1644dca1, type: 3}
   - {fileID: 4128954142928860252, guid: daf1a6a63225bc0ce82a9b165c5e2644, type: 3}
   floor: {fileID: 2231706593773874287, guid: 39b2a4d0384878c89a29453dde5a2bee, type: 3}
+  maze: {fileID: 1235119482}
 --- !u!1 &990846673
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +480,36 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1235119481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1235119482}
+  m_Layer: 0
+  m_Name: Maze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1235119482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235119481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 57.408173, y: 34.137867, z: -251.94617}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387988247
 GameObject:
   m_ObjectHideFlags: 0

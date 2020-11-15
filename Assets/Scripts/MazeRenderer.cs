@@ -8,6 +8,8 @@ public class MazeRenderer : MonoBehaviour
     public SpriteRenderer wall;
     public SpriteRenderer[] walls;
     public SpriteRenderer floor;
+    public Transform maze;
+
     int size = 10;
 
     public void RenderFromData(int[,] data)
@@ -23,13 +25,13 @@ public class MazeRenderer : MonoBehaviour
                 if (data[i, j] == 0)
                 {
                     // creiamo un nuovo spriterenderer da posizionare nello spazio
-                    SpriteRenderer sp = Instantiate<SpriteRenderer>(floor);
+                    SpriteRenderer sp = Instantiate<SpriteRenderer>(floor, maze);
                     int x = j * step;    
                     int y = i * step;   
                     sp.transform.position = new Vector3(x, y, 0);
 
                 } else {
-                    SpriteRenderer sp = Instantiate<SpriteRenderer>(walls[data[i, j]]);
+                    SpriteRenderer sp = Instantiate<SpriteRenderer>(walls[data[i, j]], maze);
                     int x = j * step;    
                     int y = i * step;   
                     sp.transform.position = new Vector3(x, y, 0);
