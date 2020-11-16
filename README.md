@@ -12,9 +12,17 @@
 
 ## TODO
 
+- pulizia del codice
+- verifica sezioni chiuse del labirinto
+- implementazione del player - add component script PlayerController. 
+ogni frame va verificato se è stato premuto un tasto. 
+si posiziona il gameobj del player a 1,1 e verificare dimensione con if in update 
++ component: rigidbody 2d collider
+in base a come è girato continua, con i tasti si cambia direzione e si sposta di una certa velocità (inspector), si incrementa 
+- occhiata all'algoritmo di movimento dei fantasmi
+
 - trello ? 
 - seed for random
-- pacman sprite
 - test collider con player
 - fix della topologia del labirinto (no vicoli ciechi e simmetria sull'asse verticale/orizz)
 - implement. dei tunnel
@@ -47,3 +55,4 @@
 ## DONE
 - gestione della simmetria centrale
 - fix del layout del labirinto alla pacman
+- pacman sprite placeholder
