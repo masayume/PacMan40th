@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class PacmanMove : MonoBehaviour
 {
-    public float speed = 0.4f;
+    public float speed = 4f;
     Vector2 dest = Vector2.zero;
+    private Rigidbody2D rb2d;
 
     // Start is called before the first frame update
     void Start()
     {
         dest = transform.position;
+        rb2d = GetComponent<Rigidbody2D>();
+        Debug.Log("start Pacman Controller");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+        rb2d.AddForce(movement * speed);
+
+/*
         // Move closer to Destination
         Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
         GetComponent<Rigidbody2D>().MovePosition(p);
@@ -39,13 +48,12 @@ public class PacmanMove : MonoBehaviour
                 Debug.Log("up");
             }
         }                
-
+*/
         // Animation Parameters
-/*
         Vector2 dir = dest - (Vector2)transform.position;
         GetComponent<Animator>().SetFloat("DirX", dir.x);
         GetComponent<Animator>().SetFloat("DirY", dir.y);
-*/
+
     }
 
     bool valid(Vector2 dir) {
