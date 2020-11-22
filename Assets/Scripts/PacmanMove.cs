@@ -19,12 +19,13 @@ public class PacmanMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+/*
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
         rb2d.AddForce(movement * speed);
+*/
 
-/*
         // Move closer to Destination
         Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
         GetComponent<Rigidbody2D>().MovePosition(p);
@@ -48,7 +49,7 @@ public class PacmanMove : MonoBehaviour
                 Debug.Log("up");
             }
         }                
-*/
+
         // Animation Parameters
         Vector2 dir = dest - (Vector2)transform.position;
         GetComponent<Animator>().SetFloat("DirX", dir.x);
