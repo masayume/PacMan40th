@@ -12,15 +12,10 @@
 
 ## TODO
 
-- pulizia del codice
+- populate "Dots" with PacDot prefabs for any floor + any space between floor 
 - verifica sezioni chiuse del labirinto
-- implementazione del player - add component script PlayerController. 
-ogni frame va verificato se è stato premuto un tasto. 
-si posiziona il gameobj del player a 1,1 e verificare dimensione con if in update 
-+ component: rigidbody 2d collider
-in base a come è girato continua, con i tasti si cambia direzione e si sposta di una certa velocità (inspector), si incrementa 
-- occhiata all'algoritmo di movimento dei fantasmi
-
+- algoritmo di movimento dei fantasmi
+- verifica dello spazio delle coordinate di pacman e dei punti (dot)
 - trello ? 
 - seed for random
 - test collider con player
@@ -56,3 +51,6 @@ in base a come è girato continua, con i tasti si cambia direzione e si sposta d
 - gestione della simmetria centrale
 - fix del layout del labirinto alla pacman
 - pacman sprite placeholder
+- pulizia del codice
+- implementazione del player - add component script PacmanMove (PlayerController). 
+- dot prefab
