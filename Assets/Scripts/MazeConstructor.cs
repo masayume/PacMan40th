@@ -98,6 +98,7 @@ public class MazeConstructor : MonoBehaviour
         */
         mazeRenderer.RenderFromData(data);
 
+        mazeRenderer.FillMazeWithDots(data);
     }
 
 /*

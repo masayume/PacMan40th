@@ -8,9 +8,31 @@ public class MazeRenderer : MonoBehaviour
     public SpriteRenderer wall;
     public SpriteRenderer[] walls;
     public SpriteRenderer floor;
+    public SpriteRenderer dots;
     public Transform maze;
 
     // int size = 10;
+    public void FillMazeWithDots(int[,] data)
+    {
+        Debug.Log("Filling the maze");
+        int rMax = data.GetUpperBound(0);
+        int cMax = data.GetUpperBound(1);
+        int step = 5;
+
+        for (int i = 0; i <= rMax; i++) // rows 
+        {
+            for (int j = 0; j <= cMax; j++) // columns
+            {
+                if (data[i, j] == 0)
+                {
+                    SpriteRenderer sp = Instantiate<SpriteRenderer>(dots, maze);
+                    int x = j * step;    
+                    int y = i * step;   
+                    sp.transform.position = new Vector3(x, y, 0);
+                }
+            }
+        }
+    }
 
     public void RenderFromData(int[,] data)
     {

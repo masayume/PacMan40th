@@ -1,7 +1,7 @@
 # PacMan40th
 40th anniversary pacman in unity 2019
 
-![40th anniversary pacman in unity 2019](img/Screenshot_20201116.png)
+![40th anniversary pacman in unity 2019](img/Screenshot_20201122.png)
 
 # PacMan 40th anniversary
 
