@@ -31,10 +31,11 @@ public class GameController : MonoBehaviour
 
     private void StartNewGame()
     {
+        /*
         timeLimit = 80;
         reduceLimitBy = 5;
         startTime = DateTime.Now;
-
+        */
         score = 0;
         // scoreLabel.text = score.ToString();
 
@@ -46,12 +47,14 @@ public class GameController : MonoBehaviour
         generator.GenerateNewMaze(25, 21, OnStartTrigger, OnGoalTrigger);
 
         float x = generator.startCol * generator.hallWidth;
-        float y = 1;
+        // float y = 1;
         float z = generator.startRow * generator.hallWidth;
 
         // restart timer
+        /*
         timeLimit -= reduceLimitBy;
         startTime = DateTime.Now;
+        */
     }
 
     // Update is called once per frame
@@ -64,6 +67,7 @@ public class GameController : MonoBehaviour
         }
         */
 
+        /*
         int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
         int timeLeft = timeLimit - timeUsed;
 
@@ -78,6 +82,8 @@ public class GameController : MonoBehaviour
 
             Invoke("StartNewGame", 4);
         }
+        */
+
     }
 
     private void OnGoalTrigger(GameObject trigger, GameObject other)
@@ -101,4 +107,6 @@ public class GameController : MonoBehaviour
             Invoke("StartNewMaze", 4);
         }
     }
+
+
 }

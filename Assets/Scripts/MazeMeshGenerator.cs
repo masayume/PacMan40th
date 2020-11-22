@@ -16,10 +16,12 @@ public class MazeMeshGenerator
 
     public MazeMeshGenerator()
     {
+        Debug.Log("MazeMeshGenerator invoked");
         width = 3.75f;
         height = 3.5f;
     }
 
+    /*
     public Mesh FromData(int[,] data)
     {
         Mesh maze = new Mesh();
@@ -138,4 +140,6 @@ public class MazeMeshGenerator
         newTriangles.Add(index+2);
         newTriangles.Add(index);
     }
+
+    */
 }

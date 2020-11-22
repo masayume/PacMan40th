@@ -10,7 +10,7 @@ public class MazeRenderer : MonoBehaviour
     public SpriteRenderer floor;
     public Transform maze;
 
-    int size = 10;
+    // int size = 10;
 
     public void RenderFromData(int[,] data)
     {

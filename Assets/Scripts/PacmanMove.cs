@@ -13,7 +13,7 @@ public class PacmanMove : MonoBehaviour
     {
         dest = transform.position;
         rb2d = GetComponent<Rigidbody2D>();
-        Debug.Log("start Pacman Controller");
+        Debug.Log("started Pacman Controller");
     }
 
     // Update is called once per frame
@@ -33,20 +33,16 @@ public class PacmanMove : MonoBehaviour
         // Check for Input if not moving
         if ((Vector2)transform.position == dest) {
             if (Input.GetKey(KeyCode.UpArrow) && valid(Vector2.up)) {
-                Debug.Log("up");
                 dest = (Vector2)transform.position + Vector2.up;
             }
             if (Input.GetKey(KeyCode.RightArrow) && valid(Vector2.right)) {
                 dest = (Vector2)transform.position + Vector2.right;
-                Debug.Log("up");
             }   
             if (Input.GetKey(KeyCode.DownArrow) && valid(-Vector2.up)) {
                 dest = (Vector2)transform.position - Vector2.up;
-                Debug.Log("up");
             }
             if (Input.GetKey(KeyCode.LeftArrow) && valid(-Vector2.right)) {
                 dest = (Vector2)transform.position - Vector2.right;
-                Debug.Log("up");
             }
         }                
 

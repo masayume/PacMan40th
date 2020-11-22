@@ -76,31 +76,32 @@ public class MazeConstructor : MonoBehaviour
             Debug.LogError("Odd numbers work better for dungeon size.");
         }
 
-        DisposeOldMaze();
+        // DisposeOldMaze();
 
         data = dataGenerator.FromDimensions(sizeRows, sizeCols);
 
-        FindStartPosition();
-        FindGoalPosition();
+        // FindStartPosition();
+        // FindGoalPosition();
 
         // store values used to generate this mesh
-        hallWidth = meshGenerator.width;
-        hallHeight = meshGenerator.height;
+        // hallWidth = meshGenerator.width;
+        // hallHeight = meshGenerator.height;
 
         DisplayMaze();
 
-        PlaceStartTrigger(startCallback);
-        PlaceGoalTrigger(goalCallback);
+        // PlaceStartTrigger(startCallback);
+        // PlaceGoalTrigger(goalCallback);
     }
 
 // sostituire displaymaze con la rappresentazione dei dati 2D
     private void DisplayMaze()
     {
-        GameObject go = new GameObject();
-        go.transform.position = Vector3.zero;
-        go.name = "Procedural Maze";
-        go.tag = "Generated";
-
+        /*
+            GameObject go = new GameObject();
+            go.transform.position = Vector3.zero;
+            go.name = "Procedural Maze";
+            go.tag = "Generated";
+        */
         mazeRenderer.RenderFromData(data);
 
 /*
@@ -115,6 +116,7 @@ public class MazeConstructor : MonoBehaviour
 */
     }
 
+/*
     public void DisposeOldMaze()
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Generated");
@@ -225,4 +227,6 @@ public class MazeConstructor : MonoBehaviour
 
         GUI.Label(new Rect(20, 20, 500, 500), msg);
     }
+
+    */
 }
