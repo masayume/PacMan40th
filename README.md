@@ -12,7 +12,8 @@
 
 ## TODO
 
-- populate "Dots" with PacDot prefabs for any floor + any space between floor 
+- dots collision
+- show score and increment when a dot is eaten
 - verifica sezioni chiuse del labirinto
 - algoritmo di movimento dei fantasmi
 - verifica dello spazio delle coordinate di pacman e dei punti (dot)
@@ -54,3 +55,4 @@
 - pulizia del codice
 - implementazione del player - add component script PacmanMove (PlayerController). 
 - dot prefab
+- populate "Dots" with PacDot prefabs for any floor + any space between floor 

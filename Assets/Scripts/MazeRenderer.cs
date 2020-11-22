@@ -9,7 +9,10 @@ public class MazeRenderer : MonoBehaviour
     public SpriteRenderer[] walls;
     public SpriteRenderer floor;
     public SpriteRenderer dots;
+
+    // folder gameobjects for prefabs
     public Transform maze;
+    public Transform mazedots; 
 
     // int size = 10;
     public void FillMazeWithDots(int[,] data)
@@ -25,7 +28,7 @@ public class MazeRenderer : MonoBehaviour
             {
                 if (data[i, j] == 0)
                 {
-                    SpriteRenderer sp = Instantiate<SpriteRenderer>(dots, maze);
+                    SpriteRenderer sp = Instantiate<SpriteRenderer>(dots, mazedots);
                     int x = j * step;    
                     int y = i * step;   
                     sp.transform.position = new Vector3(x, y, 0);

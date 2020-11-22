@@ -152,7 +152,7 @@ Transform:
   - {fileID: 214814434}
   - {fileID: 2123645174}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &64428288
 GameObject:
@@ -413,6 +413,7 @@ MonoBehaviour:
   floor: {fileID: 2231706593773874287, guid: 39b2a4d0384878c89a29453dde5a2bee, type: 3}
   dots: {fileID: 2234320892644979239, guid: 4a952c0af747e6d088ef6b2e0f9e563d, type: 3}
   maze: {fileID: 1235119482}
+  mazedots: {fileID: 1965808261}
 --- !u!1 &990846673
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +691,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1089580467
 Rigidbody2D:
@@ -909,7 +910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965808261}
   m_Layer: 0
-  m_Name: Dots
+  m_Name: MazeDots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -927,7 +928,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1972134818
 GameObject:
