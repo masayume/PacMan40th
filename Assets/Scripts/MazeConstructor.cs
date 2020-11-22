@@ -50,13 +50,11 @@ public class MazeConstructor : MonoBehaviour
     }
 
     private MazeDataGenerator dataGenerator;
-    private MazeMeshGenerator meshGenerator;
     private MazeRenderer mazeRenderer;
 
     void Awake()
     {
         dataGenerator = new MazeDataGenerator();
-        meshGenerator = new MazeMeshGenerator();
         mazeRenderer = GetComponent<MazeRenderer>();
 
         // default to walls surrounding a single empty cell
@@ -83,10 +81,6 @@ public class MazeConstructor : MonoBehaviour
         // FindStartPosition();
         // FindGoalPosition();
 
-        // store values used to generate this mesh
-        // hallWidth = meshGenerator.width;
-        // hallHeight = meshGenerator.height;
-
         DisplayMaze();
 
         // PlaceStartTrigger(startCallback);
@@ -104,16 +98,6 @@ public class MazeConstructor : MonoBehaviour
         */
         mazeRenderer.RenderFromData(data);
 
-/*
-        MeshFilter mf = go.AddComponent<MeshFilter>();
-        mf.mesh = meshGenerator.FromData(data);
-
-        MeshCollider mc = go.AddComponent<MeshCollider>();
-        mc.sharedMesh = mf.mesh;
-
-        MeshRenderer mr = go.AddComponent<MeshRenderer>();
-        mr.materials = new Material[2] {mazeMat1, mazeMat2};
-*/
     }
 
 /*
