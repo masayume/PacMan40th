@@ -6,25 +6,15 @@ public class PacmanMove : MonoBehaviour
 {
     public float speed = 4f;
     Vector2 dest = Vector2.zero;
-    private Rigidbody2D rb2d;
 
-    // Start is called before the first frame update
     void Start()
     {
         dest = transform.position;
-        rb2d = GetComponent<Rigidbody2D>();
-        Debug.Log("started Pacman Controller");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-/*
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
-        rb2d.AddForce(movement * speed);
-*/
 
         // Move closer to Destination
         Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
@@ -32,16 +22,20 @@ public class PacmanMove : MonoBehaviour
 
         // Check for Input if not moving
         if ((Vector2)transform.position == dest) {
-            if (Input.GetKey(KeyCode.UpArrow) && valid(Vector2.up)) {
+            if (Input.GetKey(KeyCode.UpArrow) ) {
+            // if (Input.GetKey(KeyCode.UpArrow) && valid(Vector2.up)) {
                 dest = (Vector2)transform.position + Vector2.up;
             }
-            if (Input.GetKey(KeyCode.RightArrow) && valid(Vector2.right)) {
+            if (Input.GetKey(KeyCode.RightArrow) ) {
+            // if (Input.GetKey(KeyCode.RightArrow) && valid(Vector2.right)) {
                 dest = (Vector2)transform.position + Vector2.right;
             }   
-            if (Input.GetKey(KeyCode.DownArrow) && valid(-Vector2.up)) {
+            if (Input.GetKey(KeyCode.DownArrow) ) {
+            // if (Input.GetKey(KeyCode.DownArrow) && valid(-Vector2.up)) {
                 dest = (Vector2)transform.position - Vector2.up;
             }
-            if (Input.GetKey(KeyCode.LeftArrow) && valid(-Vector2.right)) {
+            if (Input.GetKey(KeyCode.LeftArrow) ) {
+            // if (Input.GetKey(KeyCode.LeftArrow) && valid(-Vector2.right)) {
                 dest = (Vector2)transform.position - Vector2.right;
             }
         }                
@@ -53,12 +47,23 @@ public class PacmanMove : MonoBehaviour
 
     }
 
+
+
     bool valid(Vector2 dir) {
     // Cast Line from 'next to Pac-Man' to 'Pac-Man'
-       Vector2 pos = transform.position;
-        RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-        return (hit.collider == GetComponent<Collider2D>());
+
+        // Vector2 pos = transform.position;
+        // RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
+        // return (hit.collider == GetComponent<Collider2D>());
+
+        return true;
     }
 
-
+    void OnCollisionEnter(Collision collision) 
+    {
+        if(collision.gameObject.name == "wall")  // or if(gameObject.CompareTag("YourWallTag"))
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
 }

@@ -60,6 +60,8 @@ public class MazeRenderer : MonoBehaviour
                     int x = j * step;    
                     int y = i * step;   
                     sp.transform.position = new Vector3(x, y, 0);
+                    sp.name = "wall";
+
                 }
             }
         }
