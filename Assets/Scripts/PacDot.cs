@@ -5,10 +5,12 @@ using UnityEngine;
 public class PacDot : MonoBehaviour
 {
 
+    // private Text score;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // score = GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -18,10 +20,12 @@ public class PacDot : MonoBehaviour
 
     }
     void OnTriggerEnter2D(Collider2D co) {
-        if (co.name == "Player")
-            Destroy(gameObject);
+        if (co.name == "Player") {
+            Destroy(gameObject);    // dot eaten
+            Score.UpdateScore(10);  // score updated
+        }
 
-            
+
     }
 
 }

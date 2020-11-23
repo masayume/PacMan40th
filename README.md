@@ -12,7 +12,6 @@
 
 ## TODO
 
-- dots collision
 - show score and increment when a dot is eaten
 - verifica sezioni chiuse del labirinto
 - algoritmo di movimento dei fantasmi
@@ -41,9 +40,9 @@
 
 * [PacMan 40th anniversary git](git@github.com:masayume/PacMan40th.git)
 * [PacMan 40th anniversary URL](https://github.com/masayume/PacMan40th)
-* []()
-* []()
-* []()
+* [PacMan postmortem](https://www.masayume.it/blog/content/pac-man-postmortem-e-co)
+* [PacMan Dossier](https://github.com/floooh/pacman.c/blob/main/pacman-dossier.pdf)
+* [2D PacMan Game @ noobtuts](http://noobtuts.com/unity/2d-pacman-game)
 * []()
 * []()
 
@@ -56,3 +55,4 @@
 - implementazione del player - add component script PacmanMove (PlayerController). 
 - dot prefab
 - populate "Dots" with PacDot prefabs for any floor + any space between floor 
+- dots collision
