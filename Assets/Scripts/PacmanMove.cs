@@ -2,17 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PacmanMove : MonoBehaviour
 {
-    public float speed = 4f;
+    public float speed = 20f;
+    public Transform movePoint;
     Vector2 dest = Vector2.zero;
+
+    public LayerMask MoveBlockLayerMask;
 
     void Start()
     {
+        movePoint.parent = null;
         dest = transform.position;
     }
 
+    void Update() 
+    {
+
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
+
+        // check for colliders that block movement
+
+        if( Vector3.Distance(transform.position, movePoint.position) <= 3f )
+        {
+            if( System.Math.Abs(Input.GetAxisRaw("Horizontal")) == 1f ) 
+            {
+                // if there is no object in front
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0), 1f, MoveBlockLayerMask) )
+                {
+                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+                }
+            } else if( System.Math.Abs(Input.GetAxisRaw("Vertical")) == 1f ) 
+            {
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0, Input.GetAxisRaw("Vertical"), 0), 1f, MoveBlockLayerMask) )
+                {
+                    movePoint.position += new Vector3(0, Input.GetAxisRaw("Vertical"), 0);
+                }
+            }   
+        }
+
+        // Animation Parameters
+        Vector2 dir = dest - (Vector2)transform.position;
+        GetComponent<Animator>().SetFloat("DirX", dir.x);
+        GetComponent<Animator>().SetFloat("DirY", dir.y);
+
+    }
+
     // Update is called once per frame
+    /*
     void FixedUpdate()
     {
 
@@ -46,7 +84,7 @@ public class PacmanMove : MonoBehaviour
         GetComponent<Animator>().SetFloat("DirY", dir.y);
 
     }
-
+    */
 
 
     bool valid(Vector2 dir) {
