@@ -8,44 +8,44 @@ public class PacmanMove : MonoBehaviour
     public float speed = 20f;
     public Transform movePoint;
     Vector2 dest = Vector2.zero;
+    Vector2 dir;
+    Animator anim;
 
     public LayerMask MoveBlockLayerMask;
 
     void Start()
     {
         movePoint.parent = null;
-        dest = transform.position;
+        anim = GetComponent<Animator>();
     }
 
     void Update() 
     {
-
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
+        
+        Vector3 inputX = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+        Vector3 inputY = new Vector3(0, Input.GetAxisRaw("Vertical"), 0);
 
-        // check for colliders that block movement
-
-        if( Vector3.Distance(transform.position, movePoint.position) <= 3f )
+        // move around checking for colliders that block movement
+        if( Vector3.Distance(transform.position, movePoint.position) < 5f )
         {
             if( System.Math.Abs(Input.GetAxisRaw("Horizontal")) == 1f ) 
             {
                 // if there is no object in front
-                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0), 1f, MoveBlockLayerMask) )
+                if (!Physics2D.OverlapCircle(movePoint.position + inputX, 1f, MoveBlockLayerMask) )
                 {
-                    movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+                    movePoint.position += inputX;
+                    anim.SetFloat("DirX", Input.GetAxisRaw("Horizontal"));
                 }
             } else if( System.Math.Abs(Input.GetAxisRaw("Vertical")) == 1f ) 
             {
-                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0, Input.GetAxisRaw("Vertical"), 0), 1f, MoveBlockLayerMask) )
+                if (!Physics2D.OverlapCircle(movePoint.position + inputY, 1f, MoveBlockLayerMask) )
                 {
-                    movePoint.position += new Vector3(0, Input.GetAxisRaw("Vertical"), 0);
+                    movePoint.position += inputY;
+                    anim.SetFloat("DirY", Input.GetAxisRaw("Vertical"));
                 }
             }   
-        }
-
-        // Animation Parameters
-        Vector2 dir = dest - (Vector2)transform.position;
-        GetComponent<Animator>().SetFloat("DirX", dir.x);
-        GetComponent<Animator>().SetFloat("DirY", dir.y);
+        } 
 
     }
 
