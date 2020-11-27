@@ -9,13 +9,16 @@ public class PacmanMove : MonoBehaviour
     public Transform movePoint;
     Vector2 dest = Vector2.zero;
     Vector2 dir;
+    int scale = 5;
     Animator anim;
+    float lastHorizontalValue;
+    float lastVerticalValue;
 
     public LayerMask MoveBlockLayerMask;
 
     void Start()
     {
-        movePoint.parent = null;
+        movePoint.SetParent(null);
         anim = GetComponent<Animator>();
     }
 
@@ -23,29 +26,43 @@ public class PacmanMove : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
         
-        Vector3 inputX = new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
-        Vector3 inputY = new Vector3(0, Input.GetAxisRaw("Vertical"), 0);
+        if (Input.GetAxisRaw("Horizontal") != 0) {
+            lastHorizontalValue = Input.GetAxisRaw("Horizontal");
+            lastVerticalValue = 0;
+        }
+        if (Input.GetAxisRaw("Vertical") != 0) {
+            lastVerticalValue = Input.GetAxisRaw("Vertical");
+            lastHorizontalValue = 0;
+        }
+
+        Vector3 inputX = new Vector3(lastHorizontalValue, 0, 0);
+        Vector3 inputY = new Vector3(0, lastVerticalValue, 0);
 
         // move around checking for colliders that block movement
-        if( Vector3.Distance(transform.position, movePoint.position) < 5f )
+        if( Vector3.Distance(transform.position, movePoint.position) < 0.1f )
         {
-            if( System.Math.Abs(Input.GetAxisRaw("Horizontal")) == 1f ) 
+            if( System.Math.Abs(lastHorizontalValue) == 1f ) 
             {
                 // if there is no object in front
-                if (!Physics2D.OverlapCircle(movePoint.position + inputX, 1f, MoveBlockLayerMask) )
+                if (!Physics2D.OverlapCircle(movePoint.position + scale*inputX, 1f, MoveBlockLayerMask) )
                 {
-                    movePoint.position += inputX;
-                    anim.SetFloat("DirX", Input.GetAxisRaw("Horizontal"));
+                    movePoint.position += scale*inputX;
+                    anim.SetFloat("DirX", lastHorizontalValue);
+                    anim.SetFloat("DirY", 0);
                 }
-            } else if( System.Math.Abs(Input.GetAxisRaw("Vertical")) == 1f ) 
+            } 
+            else if( System.Math.Abs(lastVerticalValue) == 1f ) 
             {
-                if (!Physics2D.OverlapCircle(movePoint.position + inputY, 1f, MoveBlockLayerMask) )
+                if (!Physics2D.OverlapCircle(movePoint.position + scale*inputY, 1f, MoveBlockLayerMask) )
                 {
-                    movePoint.position += inputY;
-                    anim.SetFloat("DirY", Input.GetAxisRaw("Vertical"));
+                    movePoint.position += scale*inputY;
+                    anim.SetFloat("DirY", lastVerticalValue);
+                    anim.SetFloat("DirX", 0);
                 }
             }   
-        } 
+        } else {
+
+        }
 
     }
 
