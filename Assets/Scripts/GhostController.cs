@@ -10,7 +10,8 @@ public class GhostController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // score = GetComponent<Text>();
+        // GetComponent<Animator>().SetFloat("DirX", 0);
+        // GetComponent<Animator>().SetFloat("DirY", 0);
     }
 
     // Update is called once per frame

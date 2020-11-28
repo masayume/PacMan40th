@@ -12,10 +12,16 @@
 
 ## TODO
 
-- show score and increment when a dot is eaten
-- verifica sezioni chiuse del labirinto
-- algoritmo di movimento dei fantasmi
-- verifica dello spazio delle coordinate di pacman e dei punti (dot)
+- animazioni dei fantasmi
+- verifica sezioni chiuse del labirinto (loops in undirected graph of adjacent tied wall elements)
+	https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
+- algoritmo di movimento dei fantasmi (GhostController)
+- pacman shader
+- ghost shader
+- sound samples
+- maze shader
+- dots shader
+- menu scene
 - trello ? 
 - seed for random
 - test collider con player
@@ -56,3 +62,5 @@
 - dot prefab
 - populate "Dots" with PacDot prefabs for any floor + any space between floor 
 - dots collision
+- show score and increment when a dot is eaten
+- verifica dello spazio delle coordinate di pacman e dei punti (dot)
