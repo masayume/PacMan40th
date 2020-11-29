@@ -20,7 +20,7 @@ public class PacDot : MonoBehaviour
 
     }
     void OnTriggerEnter2D(Collider2D co) {
-        if (co.name == "Player") {
+        if (co.name == "pacman") {
             Destroy(gameObject);    // dot eaten
             Score.UpdateScore(10);  // score updated
         }

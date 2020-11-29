@@ -6,14 +6,13 @@ public class GhostController : MonoBehaviour
 {
     public Transform[] waypoints;
     int cur = 0;
-    public float speed = 10f;
-
+    public float speed = 5f;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        // GetComponent<Animator>().SetFloat("DirX", 0);
-        // GetComponent<Animator>().SetFloat("DirY", 0);
+        anim = GetComponent<Animator>();
     }
 
     // use the FixedUpdate function to go closer to the current waypoint, 
@@ -21,8 +20,12 @@ public class GhostController : MonoBehaviour
     void FixedUpdate()
     {
         if (transform.position != waypoints[cur].position) {
+            /*
             Vector2 p = Vector2.MoveTowards(transform.position, waypoints[cur].position, speed);
             GetComponent<Rigidbody2D>().MovePosition(p);
+            */
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[cur].position, speed * Time.deltaTime);
+
         }
         // Waypoint reached, select next one
         else {
@@ -31,8 +34,8 @@ public class GhostController : MonoBehaviour
 
         // Animation
         Vector2 dir = waypoints[cur].position - transform.position;
-        GetComponent<Animator>().SetFloat("DirX", dir.x);
-        GetComponent<Animator>().SetFloat("DirY", dir.y);
+        anim.SetFloat("DirX", dir.x);
+        anim.SetFloat("DirY", dir.y);
     }
 
 

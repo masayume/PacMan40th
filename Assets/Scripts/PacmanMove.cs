@@ -13,6 +13,9 @@ public class PacmanMove : MonoBehaviour
     Animator anim;
     float lastHorizontalValue;
     float lastVerticalValue;
+    float nextHorizontalValue;
+    float nextVerticalValue;
+    int EventCount = 0;
 
     public LayerMask MoveBlockLayerMask;
 
@@ -24,85 +27,79 @@ public class PacmanMove : MonoBehaviour
 
     void Update() 
     {
+        // each frame pacman moves towards its GameObject movePoint, a guide controlled by the player
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
-        
-        if (Input.GetAxisRaw("Horizontal") != 0) {
-            lastHorizontalValue = Input.GetAxisRaw("Horizontal");
-            lastVerticalValue = 0;
+
+        // REFRESH AND STORE pacman movement direction (for animator and movement)    
+        // PROBLEM: pacman stops on orthogonal input & a wall, but shouldn't stop at all agaist a wall    
+        if ((Input.GetAxisRaw("Horizontal") != 0) ) {
+                nextHorizontalValue = Input.GetAxisRaw("Horizontal");
+                nextVerticalValue = 0;
         }
-        if (Input.GetAxisRaw("Vertical") != 0) {
-            lastVerticalValue = Input.GetAxisRaw("Vertical");
-            lastHorizontalValue = 0;
+        if ((Input.GetAxisRaw("Vertical") != 0)  ) {
+                nextVerticalValue = Input.GetAxisRaw("Vertical");
+                nextHorizontalValue = 0;
         }
 
-        Vector3 inputX = new Vector3(lastHorizontalValue, 0, 0);
-        Vector3 inputY = new Vector3(0, lastVerticalValue, 0);
+        // calculate input vector position from direction 
+        Vector3 inputX = new Vector3(nextHorizontalValue, 0, 0);
+        Vector3 inputY = new Vector3(0, nextVerticalValue, 0);
 
-        // move around checking for colliders that block movement
+        bool blockedMoveX = Physics2D.OverlapCircle(movePoint.position + scale*inputX, 1f, MoveBlockLayerMask);
+        bool blockedMoveY = Physics2D.OverlapCircle(movePoint.position + scale*inputY, 1f, MoveBlockLayerMask);
+
+        if (blockedMoveX) 
+        {
+            nextVerticalValue = lastVerticalValue;
+        }
+        if (blockedMoveY) 
+        {
+            nextHorizontalValue = lastHorizontalValue;
+        }
+
+        // MOVE LOOP - if pacman is not arrived at destination...
         if( Vector3.Distance(transform.position, movePoint.position) < 0.1f )
         {
-            if( System.Math.Abs(lastHorizontalValue) == 1f ) 
+            if( System.Math.Abs(nextHorizontalValue) == 1f ) 
             {
-                // if there is no object in front
-                if (!Physics2D.OverlapCircle(movePoint.position + scale*inputX, 1f, MoveBlockLayerMask) )
+                // checking for horizontal colliders that block movement
+                if ( !blockedMoveX )
                 {
                     movePoint.position += scale*inputX;
-                    anim.SetFloat("DirX", lastHorizontalValue);
+                    anim.SetFloat("DirX", nextHorizontalValue);
                     anim.SetFloat("DirY", 0);
+                    lastHorizontalValue = nextHorizontalValue;
+                } else {
+                    EventCount++;
+                    // keep on moving vert
                 }
+
             } 
-            else if( System.Math.Abs(lastVerticalValue) == 1f ) 
+            if( System.Math.Abs(nextVerticalValue) == 1f ) 
             {
-                if (!Physics2D.OverlapCircle(movePoint.position + scale*inputY, 1f, MoveBlockLayerMask) )
+                // checking for vertical colliders that block movement
+                if ( !blockedMoveY )
                 {
                     movePoint.position += scale*inputY;
-                    anim.SetFloat("DirY", lastVerticalValue);
+                    anim.SetFloat("DirY", nextVerticalValue);
                     anim.SetFloat("DirX", 0);
+                    lastVerticalValue = nextVerticalValue;
+                } else {
+                    EventCount++;
+                    // keep on moving horiz
                 }
+
             }   
         } else {
 
         }
 
+        // mvpX, mvpY coords are the next cell by input, and blockedMove value is correct
+        Debug.Log(  "mvpX: " + (movePoint.position + scale*inputX) + " mvpY:" + (movePoint.position + scale*inputY) + 
+                    "LHorizV:" + lastHorizontalValue + " - LVertV: " + lastVerticalValue + 
+                    " blockedMoveX: " + blockedMoveX + " blockedMoveY " + blockedMoveY
+                );
     }
-
-    // Update is called once per frame
-    /*
-    void FixedUpdate()
-    {
-
-        // Move closer to Destination
-        Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
-        GetComponent<Rigidbody2D>().MovePosition(p);
-
-        // Check for Input if not moving
-        if ((Vector2)transform.position == dest) {
-            if (Input.GetKey(KeyCode.UpArrow) ) {
-            // if (Input.GetKey(KeyCode.UpArrow) && valid(Vector2.up)) {
-                dest = (Vector2)transform.position + Vector2.up;
-            }
-            if (Input.GetKey(KeyCode.RightArrow) ) {
-            // if (Input.GetKey(KeyCode.RightArrow) && valid(Vector2.right)) {
-                dest = (Vector2)transform.position + Vector2.right;
-            }   
-            if (Input.GetKey(KeyCode.DownArrow) ) {
-            // if (Input.GetKey(KeyCode.DownArrow) && valid(-Vector2.up)) {
-                dest = (Vector2)transform.position - Vector2.up;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow) ) {
-            // if (Input.GetKey(KeyCode.LeftArrow) && valid(-Vector2.right)) {
-                dest = (Vector2)transform.position - Vector2.right;
-            }
-        }                
-
-        // Animation Parameters
-        Vector2 dir = dest - (Vector2)transform.position;
-        GetComponent<Animator>().SetFloat("DirX", dir.x);
-        GetComponent<Animator>().SetFloat("DirY", dir.y);
-
-    }
-    */
-
 
     bool valid(Vector2 dir) {
     // Cast Line from 'next to Pac-Man' to 'Pac-Man'
