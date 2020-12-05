@@ -31,31 +31,36 @@ public class PacmanMove : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
 
         // REFRESH AND STORE pacman movement direction (for animator and movement)    
-        // PROBLEM: pacman stops on orthogonal input & a wall, but shouldn't stop at all agaist a wall    
-        if ((Input.GetAxisRaw("Horizontal") != 0) ) {
-                nextHorizontalValue = Input.GetAxisRaw("Horizontal");
-                nextVerticalValue = 0;
-        }
-        if ((Input.GetAxisRaw("Vertical") != 0)  ) {
-                nextVerticalValue = Input.GetAxisRaw("Vertical");
-                nextHorizontalValue = 0;
-        }
+        // PROBLEM: pacman stops on orthogonal input against a wall, but shouldn't stop at all agaist this type of wall
+        // SOLUTION: don't get input if movePoint collides    
 
-        // calculate input vector position from direction 
+        // get Input
+        float inputHor = Input.GetAxisRaw("Horizontal");
+        float inputVer = Input.GetAxisRaw("Vertical");
+
+        // calculate potential movement and collision
         Vector3 inputX = new Vector3(nextHorizontalValue, 0, 0);
         Vector3 inputY = new Vector3(0, nextVerticalValue, 0);
 
         bool blockedMoveX = Physics2D.OverlapCircle(movePoint.position + scale*inputX, 1f, MoveBlockLayerMask);
         bool blockedMoveY = Physics2D.OverlapCircle(movePoint.position + scale*inputY, 1f, MoveBlockLayerMask);
 
+        // if collision then no movement applyed
+        if ( inputHor != 0 && !blockedMoveX )  
+        {
+                nextHorizontalValue = inputHor;
+                nextVerticalValue = 0;
+        }
+        if ( inputVer != 0  && !blockedMoveY)
+        {
+                nextVerticalValue = inputVer;
+                nextHorizontalValue = 0;
+        }
+
         if (blockedMoveX) 
-        {
             nextVerticalValue = lastVerticalValue;
-        }
         if (blockedMoveY) 
-        {
             nextHorizontalValue = lastHorizontalValue;
-        }
 
         // MOVE LOOP - if pacman is not arrived at destination...
         if( Vector3.Distance(transform.position, movePoint.position) < 0.1f )
@@ -95,10 +100,12 @@ public class PacmanMove : MonoBehaviour
         }
 
         // mvpX, mvpY coords are the next cell by input, and blockedMove value is correct
+        /*
         Debug.Log(  "mvpX: " + (movePoint.position + scale*inputX) + " mvpY:" + (movePoint.position + scale*inputY) + 
                     "LHorizV:" + lastHorizontalValue + " - LVertV: " + lastVerticalValue + 
                     " blockedMoveX: " + blockedMoveX + " blockedMoveY " + blockedMoveY
                 );
+        */
     }
 
     bool valid(Vector2 dir) {
