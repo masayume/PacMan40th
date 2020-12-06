@@ -34,6 +34,7 @@ public class PacmanMove : MonoBehaviour
         // PROBLEM: pacman stops on orthogonal input against a wall, but shouldn't stop at all agaist this type of wall
         // SOLUTION: don't get input if movePoint collides    
 
+
         // get Input
         float inputHor = Input.GetAxisRaw("Horizontal");
         float inputVer = Input.GetAxisRaw("Vertical");
@@ -68,7 +69,8 @@ public class PacmanMove : MonoBehaviour
             if( System.Math.Abs(nextHorizontalValue) == 1f ) 
             {
                 // checking for horizontal colliders that block movement
-                if ( !blockedMoveX )
+                // if ( !blockedMoveX )
+                if ( true )
                 {
                     movePoint.position += scale*inputX;
                     anim.SetFloat("DirX", nextHorizontalValue);
@@ -83,7 +85,8 @@ public class PacmanMove : MonoBehaviour
             if( System.Math.Abs(nextVerticalValue) == 1f ) 
             {
                 // checking for vertical colliders that block movement
-                if ( !blockedMoveY )
+                // if ( !blockedMoveY )
+                if ( true )
                 {
                     movePoint.position += scale*inputY;
                     anim.SetFloat("DirY", nextVerticalValue);

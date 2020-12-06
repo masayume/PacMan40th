@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca8287948fd5176911988dd405842f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 0.04
   scatterTarget: {fileID: 1202422238}
   chaseTarget: {fileID: 667922117}
   nextTile: {fileID: 1202422238}
@@ -921,6 +921,7 @@ GameObject:
   - component: {fileID: 1089580467}
   - component: {fileID: 1089580470}
   - component: {fileID: 1089580472}
+  - component: {fileID: 1089580471}
   m_Layer: 9
   m_Name: pacman
   m_TagString: Untagged
@@ -1028,9 +1029,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012847471, y: -0.009972907}
+  m_Offset: {x: -0.012239528, y: -0.017328834}
   serializedVersion: 2
-  m_Radius: 0.21986088
+  m_Radius: 0.24972555
 --- !u!95 &1089580469
 Animator:
   serializedVersion: 3
@@ -1057,7 +1058,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089580464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1cf051c0ca24e0b39bc44b6e09351eb, type: 3}
   m_Name: 
@@ -1067,6 +1068,18 @@ MonoBehaviour:
   MoveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &1089580471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089580464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97b7ae5545c9d9349836cbf8232d36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1089580472
 MonoBehaviour:
   m_ObjectHideFlags: 0

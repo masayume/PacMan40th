@@ -31,6 +31,7 @@ public class GhostController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        
     }
 
     // use the FixedUpdate function to go closer to the current waypoint, 
