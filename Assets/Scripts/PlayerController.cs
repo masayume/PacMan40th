@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float timeToMove = 0.2f;
     private float scale = 5f;
     private Animator anim;
+    public LayerMask moveBlockLayerMask;
 
     void Start()
     {
@@ -19,22 +20,22 @@ public class PlayerController : MonoBehaviour
 
     void Update() 
     {
-        if (Input.GetKey(KeyCode.UpArrow) && !isMoving && valid(Vector2.up)) {
+        if (!isMoving && (Input.GetKey(KeyCode.UpArrow) && valid(Vector2.up))) {
             StartCoroutine(MovePlayer(Vector2.up));
             anim.SetFloat("DirX", 0);
             anim.SetFloat("DirY", 1.0f);
         }
-        if (Input.GetKey(KeyCode.DownArrow) && !isMoving && valid(Vector2.down)) {
+        if (!isMoving && (Input.GetKey(KeyCode.DownArrow) && valid(Vector2.down))) {
             StartCoroutine(MovePlayer(Vector2.down));
             anim.SetFloat("DirX", 0);
             anim.SetFloat("DirY", -1.0f);
         }
-        if (Input.GetKey(KeyCode.RightArrow) && !isMoving && valid(Vector2.right)) {
+        if (!isMoving && (Input.GetKey(KeyCode.RightArrow) && valid(Vector2.right))) {
             StartCoroutine(MovePlayer(Vector2.right));
             anim.SetFloat("DirX", 1.0f);
             anim.SetFloat("DirY", 0);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && !isMoving && valid(Vector2.left)) {
+        if (!isMoving && (Input.GetKey(KeyCode.LeftArrow) && valid(Vector2.left))) {
             StartCoroutine(MovePlayer(Vector2.left));
             anim.SetFloat("DirX", -1.0f);
             anim.SetFloat("DirY", 0);
@@ -68,9 +69,12 @@ public class PlayerController : MonoBehaviour
         
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
         Vector2 newPos =  pos + dir*scale;
-        RaycastHit2D hit = Physics2D.Linecast(newPos, pos);
-        Debug.Log(pos + " -> " + newPos + " " + hit.collider +  " " + (hit.collider == GetComponent<Collider2D>()));
-        return (!(hit.collider == GetComponent<Collider2D>()));
+        RaycastHit2D hit = Physics2D.Linecast(pos, newPos, moveBlockLayerMask);
+        
+//        Debug.Log("from: " + pos + " to: " + newPos + " hit: " + hit.collider +  " is " + (hit.collider == true));
+//        Debug.DrawRay(pos, newPos, Color.magenta);
+
+        return (!(hit.collider == true));
 
         return true;
     }
