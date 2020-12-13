@@ -20,7 +20,7 @@ public class GhostController : MonoBehaviour
     public LayerMask moveBlockLayerMask;
 
     private bool[] valid;
-    private float[] distance; 
+    private float[] d2t; 
 
     // 0: up, 1: right, 2: down, 3: left
     private float[] dirX = { 0f, 1f, 0f, -1f};
@@ -54,20 +54,57 @@ public class GhostController : MonoBehaviour
     // or select the next one as soon as we reached it
     void FixedUpdate()
     {
+        // check ghost state to implement motion
+        if (ghostState == 1) { // chase
+            targetPos = new Vector2(chaseTarget.position.x, chaseTarget.position.y) ;
+        } else if (ghostState == 2) // scatter
+        {
+            // move to the next tile towards scatterTarget 
+            targetPos = new Vector2(scatterTarget.position.x, scatterTarget.position.y) ;
+        }
+
+        // evaluate available movements (set initial direction)
+        // move to the next tile towards chaseTarget 
+        // list available movements
+        // for each available movement calculate distance to chaseTarget
+        // set next motion
+        // if arrived recalculate motion
+
         if (!isMoving) {
 
-            Debug.Log(origPos);
-            // Debug.Log("1 - calculate valid moves");
-            // Debug.Log("2 - calculate d3t for valid moves");
-            // Debug.Log("3 - det moveDir bool");
+            float maxDist = 100000f;
+            float bestDist = 100000f;
+            int moveDir = 5;
+            
+            moveUp = false;
+            moveRight = false;
+            moveDown = false;
+            moveLeft = false;
+
+            // Debug.Log("1 - calculate valid moves end best direction through min distance: moveDir");
             origPos = new Vector2(transform.position.x, transform.position.y);
             for (int i=0; i<4; i++) // 0: up, 1: right, 2: down, 3: left
             {
-                targetPos = origPos + scale * dir[i];
-                // valid[i] = Valid(dir[i]);
-                Debug.Log("valid dir " + i + ":" + Valid(dir[i]) );
+                // targetPos = origPos + scale * dir[i];
+                
+                // Debug.Log("2 - calculate d2t[i] for valid moves");
+                if (Valid(dir[i])) {
+                    maxDist = Vector2.Distance(origPos, targetPos);
+                    if (maxDist < bestDist) 
+                    {
+                        bestDist = maxDist;
+                        moveDir = i;
+                    }
+                } 
+                Debug.Log(origPos + " - valid dir: " + i + ":" + Valid(dir[i]) );
             }
 
+            Debug.Log("best dir: " + moveDir );
+
+            if (moveDir == 0) moveUp = true;
+            if (moveDir == 1) moveRight = true;
+            if (moveDir == 2) moveDown = true;
+            if (moveDir == 3) moveLeft = true;
 
             if (moveDown) {
                 StartCoroutine(MoveGhost(Vector2.down));
@@ -92,19 +129,6 @@ public class GhostController : MonoBehaviour
 
         }
 
-        // check ghost state to implement motion
-        if (ghostState == 1) { // chase
-            // evaluate available movements (set initial direction)
-            // move to the next tile towards chaseTarget 
-            // list available movements
-            // for each available movement calculate distance to chaseTarget
-            // set next motion
-            // if arrived recalculate motion
-        } else if (ghostState == 2) // scatter
-        {
-            // move to the next tile towards scatterTarget 
-
-        }
 
     }
 
