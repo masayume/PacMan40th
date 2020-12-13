@@ -6,7 +6,7 @@ public class GhostController : MonoBehaviour
 {
     // public Transform[] waypoints;
     int cur = 0;
-    public float speed = 5f;
+    public float speed = 1f;
     Animator anim;
     public Transform scatterTarget;
     public Transform chaseTarget;
@@ -14,7 +14,7 @@ public class GhostController : MonoBehaviour
     public int ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
 
     private bool isMoving, moveDown, moveUp, moveLeft, moveRight;
-    private Vector2 origPos, targetPos;
+    private Vector2 origPos, targetPos, destPos;
     private float timeToMove = 0.2f;
     private float scale = 5f;
     public LayerMask moveBlockLayerMask;
@@ -54,14 +54,6 @@ public class GhostController : MonoBehaviour
     // or select the next one as soon as we reached it
     void FixedUpdate()
     {
-        // check ghost state to implement motion
-        if (ghostState == 1) { // chase
-            targetPos = new Vector2(chaseTarget.position.x, chaseTarget.position.y) ;
-        } else if (ghostState == 2) // scatter
-        {
-            // move to the next tile towards scatterTarget 
-            targetPos = new Vector2(scatterTarget.position.x, scatterTarget.position.y) ;
-        }
 
         // evaluate available movements (set initial direction)
         // move to the next tile towards chaseTarget 
@@ -81,15 +73,22 @@ public class GhostController : MonoBehaviour
             moveDown = false;
             moveLeft = false;
 
+            // check ghost state to implement motion
+            if (ghostState == 1) { // chase
+                destPos = new Vector2(chaseTarget.position.x, chaseTarget.position.y) ;
+            } else if (ghostState == 2) // scatter
+            {
+                destPos = new Vector2(scatterTarget.position.x, scatterTarget.position.y) ;
+            }
             // Debug.Log("1 - calculate valid moves end best direction through min distance: moveDir");
-            origPos = new Vector2(transform.position.x, transform.position.y);
+            // targetPos = new Vector2(transform.position.x, transform.position.y);
             for (int i=0; i<4; i++) // 0: up, 1: right, 2: down, 3: left
             {
                 // targetPos = origPos + scale * dir[i];
                 
                 // Debug.Log("2 - calculate d2t[i] for valid moves");
                 if (Valid(dir[i])) {
-                    maxDist = Vector2.Distance(origPos, targetPos);
+                    maxDist = Vector2.Distance(origPos, destPos);
                     if (maxDist < bestDist) 
                     {
                         bestDist = maxDist;
