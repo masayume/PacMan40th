@@ -224,6 +224,9 @@ MonoBehaviour:
   chaseTarget: {fileID: 667922117}
   nextTile: {fileID: 1202422238}
   ghostState: 1
+  moveBlockLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!95 &64428292
 Animator:
   serializedVersion: 3
@@ -1458,7 +1461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -75}
+  m_AnchoredPosition: {x: 114.2, y: -75}
   m_SizeDelta: {x: 120, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1994316190
