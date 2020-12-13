@@ -23,8 +23,6 @@ public class GhostController : MonoBehaviour
     private float[] d2t; 
 
     // 0: up, 1: right, 2: down, 3: left
-    private float[] dirX = { 0f, 1f, 0f, -1f};
-    private float[] dirY = { 1f, 0f, -1f, 0f};
     private Vector2[] dir = { Vector2.up, Vector2.right, Vector2.down, Vector2.left};
 
     // Pac-Man Ghost AI Explained https://www.youtube.com/watch?v=ataGotQ7ir8
@@ -73,32 +71,30 @@ public class GhostController : MonoBehaviour
             moveDown = false;
             moveLeft = false;
 
-            // check ghost state to implement motion
+            // check ghost state to implement motion type and destTarget
             if (ghostState == 1) { // chase
                 destPos = new Vector2(chaseTarget.position.x, chaseTarget.position.y) ;
             } else if (ghostState == 2) // scatter
             {
                 destPos = new Vector2(scatterTarget.position.x, scatterTarget.position.y) ;
             }
+
             // Debug.Log("1 - calculate valid moves end best direction through min distance: moveDir");
-            // targetPos = new Vector2(transform.position.x, transform.position.y);
             for (int i=0; i<4; i++) // 0: up, 1: right, 2: down, 3: left
-            {
-                // targetPos = origPos + scale * dir[i];
-                
+            {                
                 // Debug.Log("2 - calculate d2t[i] for valid moves");
                 if (Valid(dir[i])) {
-                    maxDist = Vector2.Distance(origPos, destPos);
+                    maxDist = Vector2.Distance(origPos + dir[i], destPos);
                     if (maxDist < bestDist) 
                     {
                         bestDist = maxDist;
                         moveDir = i;
                     }
                 } 
-                Debug.Log(origPos + " - valid dir: " + i + ":" + Valid(dir[i]) );
+                // Debug.Log(origPos + " - valid dir: " + i + ":" + Valid(dir[i]) );
             }
 
-            Debug.Log("best dir: " + moveDir );
+            // Debug.Log("best dir: " + moveDir );
 
             if (moveDir == 0) moveUp = true;
             if (moveDir == 1) moveRight = true;
