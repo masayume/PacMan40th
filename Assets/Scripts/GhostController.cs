@@ -21,9 +21,10 @@ public class GhostController : MonoBehaviour
 
     private bool[] valid;
     private float[] d2t; 
-
+    
     // 0: up, 1: right, 2: down, 3: left
     private Vector2[] dir = { Vector2.up, Vector2.right, Vector2.down, Vector2.left};
+    private int[] reverse = { 2, 3, 0, 1};
 
     // Pac-Man Ghost AI Explained https://www.youtube.com/watch?v=ataGotQ7ir8
 
@@ -43,9 +44,6 @@ public class GhostController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-
-
-        moveRight = true;
     }
 
     // use the FixedUpdate function to go closer to the current waypoint, 
@@ -83,7 +81,8 @@ public class GhostController : MonoBehaviour
             for (int i=0; i<4; i++) // 0: up, 1: right, 2: down, 3: left
             {                
                 // Debug.Log("2 - calculate d2t[i] for valid moves");
-                if (Valid(dir[i])) {
+                // cheak any direction, if there are no walls and it's not a reverse
+                if ( Valid(dir[i]) && (i != reverse[i]) ) {
                     maxDist = Vector2.Distance(origPos + dir[i], destPos);
                     if (maxDist < bestDist) 
                     {
