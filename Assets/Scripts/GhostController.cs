@@ -6,6 +6,8 @@ public class GhostController : MonoBehaviour
 {
     // public Transform[] waypoints;
     int cur = 0;
+    int actionCtr = 0;
+    int lastDir = 0;            // direction of the last movement (0: up, 1: right, 2: down, 3: left)
     public float speed = 1f;
     Animator anim;
     public Transform scatterTarget;
@@ -59,10 +61,11 @@ public class GhostController : MonoBehaviour
         // if arrived recalculate motion
 
         if (!isMoving) {
-
+            
+            actionCtr++;
             float maxDist = 100000f;
             float bestDist = 100000f;
-            int moveDir = 5;
+            int moveDir = -1;
             
             moveUp = false;
             moveRight = false;
@@ -82,7 +85,7 @@ public class GhostController : MonoBehaviour
             {                
                 // Debug.Log("2 - calculate d2t[i] for valid moves");
                 // cheak any direction, if there are no walls and it's not a reverse
-                if ( Valid(dir[i]) && (i != reverse[i]) ) {
+                if ( Valid(dir[i]) && !(lastDir == reverse[i]) ) {
                     maxDist = Vector2.Distance(origPos + dir[i], destPos);
                     if (maxDist < bestDist) 
                     {
@@ -90,15 +93,17 @@ public class GhostController : MonoBehaviour
                         moveDir = i;
                     }
                 } 
-                // Debug.Log(origPos + " - valid dir: " + i + ":" + Valid(dir[i]) );
+                Debug.Log("act: " + actionCtr + "valid dir: " + i + "; rev: " + reverse[i] + " => val:" + Valid(dir[i]) );
             }
 
-            // Debug.Log("best dir: " + moveDir );
+            Debug.Log("act: " + actionCtr + " best dir: " + moveDir );
+
+            lastDir = moveDir;
 
             if (moveDir == 0) moveUp = true;
-            if (moveDir == 1) moveRight = true;
-            if (moveDir == 2) moveDown = true;
-            if (moveDir == 3) moveLeft = true;
+            else if (moveDir == 1) moveRight = true;
+            else if (moveDir == 2) moveDown = true;
+            else if (moveDir == 3) moveLeft = true;
 
             if (moveDown) {
                 StartCoroutine(MoveGhost(Vector2.down));
@@ -149,6 +154,7 @@ public class GhostController : MonoBehaviour
             yield return null;
         }
         
+        Debug.Log("targetPos:" + targetPos);
         transform.position = targetPos;
 
         isMoving = false;
