@@ -95,14 +95,12 @@ public class GhostController : MonoBehaviour
                 } 
             }
 
-            Debug.Log("act: " + actionCtr + " best: " + moveDir + "=== origPos:" + origPos + 
-            " Pos:" + transform.position.x + "," + transform.position.y);
+            // Debug.Log("act: " + actionCtr + " best: " + moveDir + "=== origPos:" + origPos + " Pos:" + transform.position.x + "," + transform.position.y);
 
             lastDir = moveDir;
 
             if (moveDir == 0) // 0: UP
             {
-                Debug.Log("coroutine dir: " + moveDir + " pos: " + transform.position);
                 StartCoroutine(MoveGhost(Vector2.up));
                 // StartCoroutine(MoveGhost(transform.position, scale * Vector2.up));
                 anim.SetFloat("DirX", 0);
@@ -110,7 +108,6 @@ public class GhostController : MonoBehaviour
             }
             else if (moveDir == 1) // 1: RIGHT
             {
-                Debug.Log("coroutine dir: " + moveDir + " pos: " + transform.position);
                 StartCoroutine(MoveGhost(Vector2.right));
                 // StartCoroutine(MoveGhost(transform.position, scale * Vector2.right));
                 anim.SetFloat("DirX", 1.0f);
@@ -118,7 +115,6 @@ public class GhostController : MonoBehaviour
             }
             else if (moveDir == 2) // 2: DOWN
             {
-                Debug.Log("coroutine dir: " + moveDir + " pos: " + transform.position);
                 StartCoroutine(MoveGhost(Vector2.down));
                 // StartCoroutine(MoveGhost(transform.position, scale * Vector2.down));
                 anim.SetFloat("DirX", 0);
@@ -126,7 +122,6 @@ public class GhostController : MonoBehaviour
             }
             else if (moveDir == 3) // 3: LEFT
             {
-                Debug.Log("coroutine dir: " + moveDir + " pos: " + transform.position);
                 StartCoroutine(MoveGhost(Vector2.left));
                 // StartCoroutine(MoveGhost(transform.position, scale * Vector2.left));
                 anim.SetFloat("DirX", -1.0f);
