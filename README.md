@@ -11,11 +11,10 @@
 - PSD directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/img
 
 ## TODO
-
-- animazioni dei fantasmi
+- update ghost targets
+- refactor ghost states to ENUM
 - verifica sezioni chiuse del labirinto (loops in undirected graph of adjacent tied wall elements)
 	https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
-- algoritmo di movimento dei fantasmi (GhostController)
 - pacman shader
 - ghost shader
 - sound samples
@@ -54,6 +53,8 @@
 
 
 ## DONE
+- algoritmo di movimento dei fantasmi (GhostController)
+- animazioni dei fantasmi
 - gestione della simmetria centrale
 - fix del layout del labirinto alla pacman
 - pacman sprite placeholder

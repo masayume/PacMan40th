@@ -62,6 +62,8 @@ public class GhostController : MonoBehaviour
 
         if (!isMoving) {
             
+            MoveGhostTargets();
+            
             actionCtr++;
             float maxDist = 100000f;
             float bestDist = 100000f;
@@ -172,6 +174,22 @@ public class GhostController : MonoBehaviour
 //        Debug.DrawRay(pos, newPos, Color.magenta);
 
         return (!(hit.collider == true));
+
+    }
+
+// updating chase target position
+    private void MoveGhostTargets() {
+
+        Debug.Log("must move " + this.gameObject.name );
+
+        if (this.gameObject.name == "Ghost1") // Red Ghost target is where pacman is located
+        {
+            // update RedWPChase
+        } else if (this.gameObject.name == "Ghost2") // Pink Ghost target is 4+ units in front of pacman
+        {
+            // update PinkWPChase
+
+        }
 
     }
 }
