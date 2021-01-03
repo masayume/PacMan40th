@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &214814434
 Transform:
   m_ObjectHideFlags: 0
@@ -1248,7 +1248,7 @@ GameObject:
   - component: {fileID: 1089580472}
   - component: {fileID: 1089580471}
   m_Layer: 9
-  m_Name: pacman
+  m_Name: Pacman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1388,6 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97b7ae5545c9d9349836cbf8232d36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   moveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 256

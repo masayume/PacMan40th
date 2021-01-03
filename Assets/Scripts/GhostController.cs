@@ -13,12 +13,15 @@ public class GhostController : MonoBehaviour
     public Transform scatterTarget;
     public Transform chaseTarget;
     public Transform nextTile;
+    private GameObject pacman;
     public int ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
 
     private bool isMoving, moveDown, moveUp, moveLeft, moveRight;
     private Vector2 origPos, targetPos, destPos; // actor position; next move position; destination position (scatter/chase)
     private float timeToMove = 0.2f;
-    private float scale = 5f;
+    private static float scale = 5f;
+    private float chaseScale = 4f * scale;
+
     public LayerMask moveBlockLayerMask;
 
     private bool[] valid;
@@ -46,6 +49,7 @@ public class GhostController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        pacman = GameObject.Find("Pacman");
     }
 
     // use the FixedUpdate function to go closer to the current waypoint, 
@@ -137,7 +141,7 @@ public class GhostController : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D co) {
-        if (co.name == "pacman") {
+        if (co.name == "Pacman") {
             Destroy(gameObject);    // pacman dies
         }
 
@@ -177,19 +181,53 @@ public class GhostController : MonoBehaviour
 
     }
 
+    public void MoveRedChaseTarget()
+    {
+        // find pacman position
+        chaseTarget.transform.position = new Vector3(pacman.transform.position.x, pacman.transform.position.y, 0);
+    }
+
+    public void MovePinkChaseTarget()
+    {
+        // find pacman position and direction: get DirX, DirY values from Pacman animator
+        
+        chaseTarget.transform.position = new Vector3(
+            pacman.transform.position.x + pacman.GetComponent<Animator>().GetFloat("DirX") * chaseScale, 
+            pacman.transform.position.y + pacman.GetComponent<Animator>().GetFloat("DirY") * chaseScale, 
+        0);
+
+        Debug.Log("moving pink target: " + chaseTarget.transform.position);
+
+    }
+
+    public void MoveCyanChaseTarget()
+    {
+        // find pacman position
+        chaseTarget.transform.position = new Vector3(pacman.transform.position.x, pacman.transform.position.y, 0);
+    }
+
 // updating chase target position
     private void MoveGhostTargets() {
 
-        Debug.Log("must move " + this.gameObject.name );
+        // Debug.Log("must move " + this.gameObject.name );
 
         if (this.gameObject.name == "Ghost1") // Red Ghost target is where pacman is located
         {
-            // update RedWPChase
+            // set new chaseTarget position
+            MoveRedChaseTarget();
+
         } else if (this.gameObject.name == "Ghost2") // Pink Ghost target is 4+ units in front of pacman
         {
-            // update PinkWPChase
+            // update chaseTarget (PinkWPChase)
+            MovePinkChaseTarget();
+
+        } else if (this.gameObject.name == "Ghost3") // Cyan Ghost target a function of pacman and Red Ghost Position
+        {
+            // update chaseTarget (CyanWPChase)
+            MoveCyanChaseTarget();
 
         }
+
 
     }
 }
