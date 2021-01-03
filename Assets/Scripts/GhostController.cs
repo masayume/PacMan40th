@@ -17,7 +17,7 @@ public class GhostController : MonoBehaviour
 
     private bool isMoving, moveDown, moveUp, moveLeft, moveRight;
     private Vector2 origPos, targetPos, destPos; // actor position; next move position; destination position (scatter/chase)
-    private float timeToMove = 1f;
+    private float timeToMove = 0.2f;
     private float scale = 5f;
     public LayerMask moveBlockLayerMask;
 
@@ -147,71 +147,23 @@ public class GhostController : MonoBehaviour
 
     }
 
-/*
-    protected IEnumerator MoveGhostNew2(Vector2 nextPos)
-    {
-        float i = 0.0f;
-        float rate = 1 / moveDuration;
-        Vector3 newPos = nextCell.transform.position;
-        Vector3 startPos = transform.position;
-        while (i < 1)
-        {
-            i += rate * Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, newPos, i);
-            yield return null;
-        }
-        transform.position = newPos;
-        currentCell = nextCell;
-        Move();
-    }
-*/
-    
     private IEnumerator MoveGhost(Vector2 direction)
     {
         isMoving = true;
         float elapsedTime = 0;
-        float threshold = 0.005f;
-        float step;
-        float speed = 0.01f;
-
         origPos = new Vector2(transform.position.x, transform.position.y);
         targetPos = origPos + scale * direction;
 
-        step =  5f ; // calculate distance to move 
-
         while (elapsedTime < timeToMove)
         {
-            if (Vector2.Distance(transform.position, targetPos) > threshold) {
-                transform.position = Vector2.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
-                // elapsedTime += Time.deltaTime;
-                elapsedTime += Time.smoothDeltaTime;
-            } else {
-                transform.position = targetPos;
-            }
-            yield return new WaitForFixedUpdate();
-
+            transform.position = Vector2.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-      
-//        Debug.Log("targetPos final:" + targetPos);
-        // transform.position = targetPos;
+        
+        transform.position = targetPos;
 
         isMoving = false;
-
-        yield return null;
-    }
-
-
-    private IEnumerator MoveGhostNew(Vector2 from, Vector2 move) {
-            float speed = 1f;
-            Vector2 to = new Vector2(from.x + move.x, from.y + move.y);
-            float step = (speed / (from - to).magnitude) * Time.fixedDeltaTime;
-            float t = 0;
-            while (t <= 1.0f) {
-                t += step; // Goes from 0 to 1, incrementing by step each time
-                transform.position = Vector2.Lerp(from, to, t); // Move objectToMove closer to b
-                yield return new WaitForFixedUpdate();         // Leave the routine and return here in the next frame
-            }
-            transform.position = to;
     }
 
     bool Valid(Vector2 dir) {
