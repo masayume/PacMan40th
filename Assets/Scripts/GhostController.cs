@@ -13,7 +13,7 @@ public class GhostController : MonoBehaviour
     public Transform scatterTarget;
     public Transform chaseTarget;
     public Transform nextTile;
-    private GameObject pacman;
+    private GameObject pacman, blinky;
     public int ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
 
     private bool isMoving, moveDown, moveUp, moveLeft, moveRight;
@@ -50,6 +50,7 @@ public class GhostController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         pacman = GameObject.Find("Pacman");
+        blinky = GameObject.Find("Ghost1"); // Red Ghost
     }
 
     // use the FixedUpdate function to go closer to the current waypoint, 
@@ -181,16 +182,17 @@ public class GhostController : MonoBehaviour
 
     }
 
+    // Blinky
     public void MoveRedChaseTarget()
     {
         // find pacman position
         chaseTarget.transform.position = new Vector3(pacman.transform.position.x, pacman.transform.position.y, 0);
     }
 
+    // Pinky
     public void MovePinkChaseTarget()
     {
         // find pacman position and direction: get DirX, DirY values from Pacman animator
-        
         chaseTarget.transform.position = new Vector3(
             pacman.transform.position.x + pacman.GetComponent<Animator>().GetFloat("DirX") * chaseScale, 
             pacman.transform.position.y + pacman.GetComponent<Animator>().GetFloat("DirY") * chaseScale, 
@@ -200,10 +202,19 @@ public class GhostController : MonoBehaviour
 
     }
 
+    // Inky
     public void MoveCyanChaseTarget()
     {
-        // find pacman position
-        chaseTarget.transform.position = new Vector3(pacman.transform.position.x, pacman.transform.position.y, 0);
+        // find pacman position and direction: get DirX, DirY values from Pacman animator
+        // find Blinky (Red) position 
+        Vector3 p0 = new Vector3(
+            pacman.transform.position.x + pacman.GetComponent<Animator>().GetFloat("DirX") * (chaseScale / 2), 
+            pacman.transform.position.y + pacman.GetComponent<Animator>().GetFloat("DirY") * (chaseScale / 2), 
+        0);
+        Vector3 blinkyPos = new Vector3(blinky.transform.position.x, blinky.transform.position.y, 0);
+        Vector3 v1 = blinkyPos - p0;
+        Vector3 v2 = -v1;
+        chaseTarget.transform.position = new Vector3(pacman.transform.position.x + v2.x, pacman.transform.position.y + v2.y, 0);    
     }
 
 // updating chase target position
