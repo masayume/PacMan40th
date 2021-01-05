@@ -14,7 +14,7 @@ public class GhostController : MonoBehaviour
     public Transform chaseTarget;
     public Transform nextTile;
     private GameObject pacman, blinky;
-    public int ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
+    public static int ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
 
     private bool isMoving, moveDown, moveUp, moveLeft, moveRight;
     private Vector2 origPos, targetPos, destPos; // actor position; next move position; destination position (scatter/chase)
@@ -148,6 +148,7 @@ public class GhostController : MonoBehaviour
 
 
     }
+
 
     private IEnumerator MoveGhost(Vector2 direction)
     {

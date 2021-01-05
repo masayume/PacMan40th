@@ -4,6 +4,13 @@
  * text of license https://opensource.org/licenses/MIT
  */
 
+/*
+ * scatter-chase sequences:
+ * level 1:     7" 20" 7" 20" 5" 20" 5" chase
+ * level 2-4:   7" 20" 7" 20" 5" 13" 1" chase
+ * level 5+:    5" 20" 5" 20" 5" 17" 1" chase
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,7 +28,7 @@ public class GameController : MonoBehaviour
     private int reduceLimitBy;
 
     private int score;
-    private bool goalReached;
+    private bool goalReached, isToggling = false, ToggleOnOff;
 
     // Use this for initialization
     void Start() {
@@ -60,31 +67,33 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (!player.enabled)
-        {
-            return;
+        // ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
+        if (!isToggling){
+            Toggle();
         }
-        */
-
-        /*
-        int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
-        int timeLeft = timeLimit - timeUsed;
-
-        if (timeLeft > 0)
-        {
-            // timeLabel.text = timeLeft.ToString();
-        }
-        else
-        {
+ 
             // timeLabel.text = "TIME UP";
             // player.enabled = false;
 
-            Invoke("StartNewGame", 4);
-        }
-        */
+            // Invoke("StartNewGame", 4);
+ 
+    }
+
+    private IEnumerator Toggle()
+    {
+        isToggling = true;
+        ToggleOnOff = true;
+        GhostController.ghostState = 1;
+            yield return new WaitForSeconds(5);
+
+        ToggleOnOff = false;
+        GhostController.ghostState = 2;
+            yield return new WaitForSeconds(7);
+
+        isToggling = false;
 
     }
+
 
     private void OnGoalTrigger(GameObject trigger, GameObject other)
     {
