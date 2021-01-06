@@ -12,7 +12,7 @@ public class PacDot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_MainCamera = Camera.main;
+        // m_MainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -25,13 +25,9 @@ public class PacDot : MonoBehaviour
     void OnTriggerEnter2D(Collider2D co) {
         if (co.name == "Pacman") {
 
-            Debug.Log("should play audio: " + clip + " at " + m_MainCamera.transform.position);
-
             // AudioSource.PlayClipAtPoint(clip, new Vector3(57f, 50f, -251f));
-            AudioSource.PlayClipAtPoint(clip, m_MainCamera.transform.position);
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
             
-
-
             Destroy(gameObject);    // dot eaten
 
             Score.UpdateScore(10);  // score updated
