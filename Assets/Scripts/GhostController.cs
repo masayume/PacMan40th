@@ -5,7 +5,6 @@ using UnityEngine;
 public class GhostController : MonoBehaviour
 {
     // public Transform[] waypoints;
-    // int cur = 0;
     int actionCtr = 0;
     int lastDir = 0;            // direction of the last movement (0: up, 1: right, 2: down, 3: left)
     public float speed = 1f;
@@ -17,7 +16,6 @@ public class GhostController : MonoBehaviour
     public static int ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
 
     private bool isMoving; 
-    // private bool moveDown, moveUp, moveLeft, moveRight;
     private Vector2 origPos, targetPos, destPos; // actor position; next move position; destination position (scatter/chase)
     private float timeToMove = 0.2f;
     private static float scale = 5f;
@@ -75,12 +73,6 @@ public class GhostController : MonoBehaviour
             float bestDist = 100000f;
             int moveDir = -1;
 
-/*            
-            moveUp = false;
-            moveRight = false;
-            moveDown = false;
-            moveLeft = false;
-*/
             // check ghost state to implement motion type and destTarget
             if (ghostState == 1) { // chase
                 destPos = new Vector2(chaseTarget.position.x, chaseTarget.position.y) ;
@@ -111,28 +103,24 @@ public class GhostController : MonoBehaviour
             if (moveDir == 0) // 0: UP
             {
                 StartCoroutine(MoveGhost(Vector2.up));
-                // StartCoroutine(MoveGhost(transform.position, scale * Vector2.up));
                 anim.SetFloat("DirX", 0);
                 anim.SetFloat("DirY", 1.0f);                
             }
             else if (moveDir == 1) // 1: RIGHT
             {
                 StartCoroutine(MoveGhost(Vector2.right));
-                // StartCoroutine(MoveGhost(transform.position, scale * Vector2.right));
                 anim.SetFloat("DirX", 1.0f);
                 anim.SetFloat("DirY", 0);
             }
             else if (moveDir == 2) // 2: DOWN
             {
                 StartCoroutine(MoveGhost(Vector2.down));
-                // StartCoroutine(MoveGhost(transform.position, scale * Vector2.down));
                 anim.SetFloat("DirX", 0);
                 anim.SetFloat("DirY", -1.0f);
             }
             else if (moveDir == 3) // 3: LEFT
             {
                 StartCoroutine(MoveGhost(Vector2.left));
-                // StartCoroutine(MoveGhost(transform.position, scale * Vector2.left));
                 anim.SetFloat("DirX", -1.0f);
                 anim.SetFloat("DirY", 0);
             }
@@ -210,13 +198,22 @@ public class GhostController : MonoBehaviour
     {
         // find pacman position and direction: get DirX, DirY values from Pacman animator
         // find Blinky (Red) position 
+        Vector3 blinkyPos, v2, v1;
+
         Vector3 p0 = new Vector3(
             pacman.transform.position.x + pacman.GetComponent<Animator>().GetFloat("DirX") * (chaseScale / 2), 
             pacman.transform.position.y + pacman.GetComponent<Animator>().GetFloat("DirY") * (chaseScale / 2), 
         0);
-        Vector3 blinkyPos = new Vector3(blinky.transform.position.x, blinky.transform.position.y, 0);
-        Vector3 v1 = blinkyPos - p0;
-        Vector3 v2 = -v1;
+
+        if (blinky != null) // blinky is not destroyed
+        {
+            blinkyPos = new Vector3(blinky.transform.position.x, blinky.transform.position.y, 0);
+            v1 = blinkyPos - p0;
+            v2 = -v1;
+        } else {
+            v2 = new Vector3(0, 0, 0);
+        }
+
         chaseTarget.transform.position = new Vector3(pacman.transform.position.x + v2.x, pacman.transform.position.y + v2.y, 0);    
     }
 

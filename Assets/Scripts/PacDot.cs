@@ -5,14 +5,14 @@ using UnityEngine;
 public class PacDot : MonoBehaviour
 {
 
-    // private Text score;
+    Camera m_MainCamera;
+
     public AudioClip clip;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-
+        m_MainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -24,9 +24,14 @@ public class PacDot : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D co) {
         if (co.name == "Pacman") {
-            // audioSource.Play();
-            // AudioSource.PlayOneShot(clip);
-            AudioSource.PlayClipAtPoint(clip, new Vector3(0, 0, 0));
+
+            Debug.Log("should play audio: " + clip + " at " + m_MainCamera.transform.position);
+
+            // AudioSource.PlayClipAtPoint(clip, new Vector3(57f, 50f, -251f));
+            AudioSource.PlayClipAtPoint(clip, m_MainCamera.transform.position);
+            
+
+
             Destroy(gameObject);    // dot eaten
 
             Score.UpdateScore(10);  // score updated
