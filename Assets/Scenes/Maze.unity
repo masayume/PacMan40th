@@ -223,7 +223,6 @@ MonoBehaviour:
   scatterTarget: {fileID: 1202422238}
   chaseTarget: {fileID: 667922117}
   nextTile: {fileID: 1202422238}
-  ghostState: 1
   moveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -385,7 +384,6 @@ MonoBehaviour:
   scatterTarget: {fileID: 684885039}
   chaseTarget: {fileID: 639487278}
   nextTile: {fileID: 0}
-  ghostState: 1
   moveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -2080,7 +2078,6 @@ MonoBehaviour:
   scatterTarget: {fileID: 1831577812}
   chaseTarget: {fileID: 587514400}
   nextTile: {fileID: 0}
-  ghostState: 1
   moveBlockLayerMask:
     serializedVersion: 2
     m_Bits: 256

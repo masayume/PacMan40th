@@ -11,7 +11,9 @@
 - PSD directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/img
 
 ## TODO
-- update ghost targets
+- switch ghostState every n seconds (scatter/chase) update ghost targets
+- switching ghost state invert movement
+- ghosts bump (?)
 - refactor ghost states to ENUM
 - verifica sezioni chiuse del labirinto (loops in undirected graph of adjacent tied wall elements)
 	https://www.geeksforgeeks.org/detect-cycle-undirected-graph/

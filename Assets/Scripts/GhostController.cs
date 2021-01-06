@@ -5,7 +5,7 @@ using UnityEngine;
 public class GhostController : MonoBehaviour
 {
     // public Transform[] waypoints;
-    int cur = 0;
+    // int cur = 0;
     int actionCtr = 0;
     int lastDir = 0;            // direction of the last movement (0: up, 1: right, 2: down, 3: left)
     public float speed = 1f;
@@ -16,7 +16,8 @@ public class GhostController : MonoBehaviour
     private GameObject pacman, blinky;
     public static int ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
 
-    private bool isMoving, moveDown, moveUp, moveLeft, moveRight;
+    private bool isMoving; 
+    // private bool moveDown, moveUp, moveLeft, moveRight;
     private Vector2 origPos, targetPos, destPos; // actor position; next move position; destination position (scatter/chase)
     private float timeToMove = 0.2f;
     private static float scale = 5f;
@@ -73,12 +74,13 @@ public class GhostController : MonoBehaviour
             float maxDist = 100000f;
             float bestDist = 100000f;
             int moveDir = -1;
-            
+
+/*            
             moveUp = false;
             moveRight = false;
             moveDown = false;
             moveLeft = false;
-
+*/
             // check ghost state to implement motion type and destTarget
             if (ghostState == 1) { // chase
                 destPos = new Vector2(chaseTarget.position.x, chaseTarget.position.y) ;
@@ -199,7 +201,7 @@ public class GhostController : MonoBehaviour
             pacman.transform.position.y + pacman.GetComponent<Animator>().GetFloat("DirY") * chaseScale, 
         0);
 
-        Debug.Log("moving pink target: " + chaseTarget.transform.position);
+        // Debug.Log("moving pink target: " + chaseTarget.transform.position);
 
     }
 

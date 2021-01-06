@@ -76,6 +76,6 @@ public class PlayerController : MonoBehaviour
 
         return (!(hit.collider == true));
 
-        return true;
+        // return true;
     }
 }

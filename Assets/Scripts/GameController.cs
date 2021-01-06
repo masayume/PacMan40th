@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     private int reduceLimitBy;
 
     private int score;
-    private bool goalReached, isToggling = false, ToggleOnOff;
+    // private bool isToggling = false, ToggleOnOff;
 
     // Use this for initialization
     void Start() {
@@ -68,10 +68,11 @@ public class GameController : MonoBehaviour
     void Update()
     {
         // ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
+/*
         if (!isToggling){
             Toggle();
         }
- 
+*/ 
             // timeLabel.text = "TIME UP";
             // player.enabled = false;
 
@@ -79,6 +80,7 @@ public class GameController : MonoBehaviour
  
     }
 
+/*
     private IEnumerator Toggle()
     {
         isToggling = true;
@@ -93,12 +95,12 @@ public class GameController : MonoBehaviour
         isToggling = false;
 
     }
-
+*/
 
     private void OnGoalTrigger(GameObject trigger, GameObject other)
     {
         Debug.Log("Goal!");
-        goalReached = true;
+        // goalReached = true;
 
         score += 1;
         // scoreLabel.text = score.ToString();
@@ -108,6 +110,7 @@ public class GameController : MonoBehaviour
 
     private void OnStartTrigger(GameObject trigger, GameObject other)
     {
+/*
         if (goalReached)
         {
             Debug.Log("Finish!");
@@ -115,7 +118,8 @@ public class GameController : MonoBehaviour
 
             Invoke("StartNewMaze", 4);
         }
-    }
+*/
 
+    }
 
 }
