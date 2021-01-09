@@ -1,7 +1,7 @@
 # PacMan40th
 40th anniversary pacman in unity 2019
 
-![40th anniversary pacman in unity 2019](img/Screenshot_20201122.png)
+![40th anniversary pacman in unity 2019](img/Screenshot_20210109.gif)
 
 # PacMan 40th anniversary
 
@@ -56,6 +56,7 @@
 
 
 ## DONE
+- first sound: "waka" when eating dots
 - algoritmo di movimento dei fantasmi (GhostController)
 - animazioni dei fantasmi
 - gestione della simmetria centrale
