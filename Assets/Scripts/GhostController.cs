@@ -7,8 +7,14 @@ public class GhostController : MonoBehaviour
     // public Transform[] waypoints;
     int actionCtr = 0;
     int lastDir = 0;            // direction of the last movement (0: up, 1: right, 2: down, 3: left)
-    public float speed = 1f;
+
+    [Header("ghost speed")]
+    public float timeToMove = 0.4f;
+    // private float speed = 0.8f;
+
     Animator anim;
+
+    [Header("targets")]
     public Transform scatterTarget;
     public Transform chaseTarget;
     public Transform nextTile;
@@ -17,10 +23,10 @@ public class GhostController : MonoBehaviour
 
     private bool isMoving; 
     private Vector2 origPos, targetPos, destPos; // actor position; next move position; destination position (scatter/chase)
-    private float timeToMove = 0.2f;
     private static float scale = 5f;
     private float chaseScale = 4f * scale;
 
+    [Header("collider mask")]
     public LayerMask moveBlockLayerMask;
 
     private bool[] valid;
@@ -50,6 +56,26 @@ public class GhostController : MonoBehaviour
         anim = GetComponent<Animator>();
         pacman = GameObject.Find("Pacman");
         blinky = GameObject.Find("Ghost1"); // Red Ghost
+
+        // coroutines to switch state
+        StartCoroutine(ToggleStateCoroutine());
+    }
+
+    // ghostState = 1; // start in chase mode = Ghost State: [0=frightened, 1=chase, 2=scatter, 3=eaten]
+    IEnumerator ToggleStateCoroutine()
+    {
+        while (true)
+        {
+            if (ghostState == 1) {
+                ghostState = 2;
+                // Debug.Log(this.gameObject.name + " scatters.");
+            } else if (ghostState == 2) {
+                ghostState = 1;
+                // Debug.Log(this.gameObject.name + " chasing.");
+            }
+            yield return new WaitForSeconds(7f); // wait for 7 seconds and then go on
+
+        }
     }
 
     // use the FixedUpdate function to go closer to the current waypoint, 

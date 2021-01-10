@@ -12,7 +12,10 @@
 
 ## TODO
 - switch ghostState every n seconds (scatter/chase) update ghost targets
-- switching ghost state invert movement
+- switching ghost state invert movement (?)
+- limit number of dots for end screen - next level
+- fruits. fruit spot is under the ghost house
+- parametric maze size - calculate ghost start position 
 - ghosts bump (?)
 - refactor ghost states to ENUM
 - verifica sezioni chiuse del labirinto (loops in undirected graph of adjacent tied wall elements)

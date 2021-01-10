@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 origPos, targetPos;
     private float timeToMove = 0.2f;
     private float scale = 5f;
+
+
     public Animator anim;
     public LayerMask moveBlockLayerMask;
 

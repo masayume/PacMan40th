@@ -80,23 +80,6 @@ public class GameController : MonoBehaviour
  
     }
 
-/*
-    private IEnumerator Toggle()
-    {
-        isToggling = true;
-        ToggleOnOff = true;
-        GhostController.ghostState = 1;
-            yield return new WaitForSeconds(5);
-
-        ToggleOnOff = false;
-        GhostController.ghostState = 2;
-            yield return new WaitForSeconds(7);
-
-        isToggling = false;
-
-    }
-*/
-
     private void OnGoalTrigger(GameObject trigger, GameObject other)
     {
         Debug.Log("Goal!");

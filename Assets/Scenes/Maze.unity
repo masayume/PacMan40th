@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca8287948fd5176911988dd405842f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.04
+  timeToMove: 0.4
   scatterTarget: {fileID: 1202422238}
   chaseTarget: {fileID: 667922117}
   nextTile: {fileID: 1202422238}
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca8287948fd5176911988dd405842f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  timeToMove: 0.4
   scatterTarget: {fileID: 684885039}
   chaseTarget: {fileID: 639487278}
   nextTile: {fileID: 0}
@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca8287948fd5176911988dd405842f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  timeToMove: 0.4
   scatterTarget: {fileID: 1831577812}
   chaseTarget: {fileID: 587514400}
   nextTile: {fileID: 0}
