@@ -11,6 +11,7 @@
 - PSD directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/img
 
 ## TODO
+- spawn pills
 - switch ghostState every n seconds (scatter/chase) update ghost targets
 - switching ghost state invert movement (?)
 - limit number of dots for end screen - next level

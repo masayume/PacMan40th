@@ -9,6 +9,7 @@ public class MazeRenderer : MonoBehaviour
     public SpriteRenderer[] walls;
     public SpriteRenderer floor;
     public SpriteRenderer dots;
+    public SpriteRenderer pills;
 
     // folder gameobjects for prefabs
     public Transform maze;
@@ -28,6 +29,8 @@ public class MazeRenderer : MonoBehaviour
             {
                 if (data[i, j] == 0)
                 {
+                    // condition for pill placement
+
                     SpriteRenderer sp = Instantiate<SpriteRenderer>(dots, mazedots);
                     int x = j * step;    
                     int y = i * step;   

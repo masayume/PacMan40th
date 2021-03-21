@@ -712,6 +712,7 @@ MonoBehaviour:
   - {fileID: 4128954142928860252, guid: daf1a6a63225bc0ce82a9b165c5e2644, type: 3}
   floor: {fileID: 2231706593773874287, guid: 39b2a4d0384878c89a29453dde5a2bee, type: 3}
   dots: {fileID: 2234320892644979239, guid: 4a952c0af747e6d088ef6b2e0f9e563d, type: 3}
+  pills: {fileID: 2234320892644979239, guid: 541d1567c2e9b533aacc2273c27ebdf2, type: 3}
   maze: {fileID: 1235119482}
   mazedots: {fileID: 1965808261}
 --- !u!1 &587514398
