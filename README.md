@@ -9,6 +9,7 @@
 
 - local directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/
 - PSD directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/img
+- [★ NG Namco Community Magazine ](https://archive.org/details/ngnamco)
 
 ## TODO
 - spawn pills
