@@ -11,7 +11,7 @@
 - PSD directory: ~/DATA/E/UNITY.PROJECTS/2020-1-PACMAN/PacMan40th/img
 - [★ NG Namco Community Magazine ](https://archive.org/details/ngnamco)
 - [★ PacMan PostMortem by Toru Iwatani](https://www.gamasutra.com/view/news/244181/Postmortem_PacMan_Iwatanis_rhapsody_in_yellow.php)
-
+- [PacMan source WASM reference](https://floooh.github.io/pacman.c/pacman.html)
 
 ## TODO
 - spawn pills
